@@ -7,7 +7,7 @@ export default function AboutMe() {
     location: 'Ordu-İstanbul',
     job:'Front End Developer',
     bio: 
-    'Öğrenciyim. Dünyaya ve insan ilişkilerine dair umutlarımı sinema ve edebiyat sayesinde ayakta tutuyorum. Sinema, Edebiyat, Yazılım ile ilgileniyorum.',
+    'Selam.',
     });
 
   return (

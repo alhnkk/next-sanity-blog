@@ -1,7 +1,9 @@
+import client from '../../client'
 import { PortableText } from '@portabletext/react'
-import BackButton from './BackButton'
 import imageUrlBuilder from '@sanity/image-url'
-import client from '../client'
+
+
+import BackButton from '../components/BackButton'
 
 
 

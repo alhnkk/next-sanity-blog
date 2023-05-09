@@ -1,14 +1,12 @@
 import "../styles/globals.css"
 import { useRouter } from 'next/router';
-
-
-
-import Layout from "../components/layout"
-import Footer from '../components/Footer';
-import Head from "next/head";
 import { useState } from "react";
-import Navbar from "@/components/Navbar";
+import Head from "next/head";
 import useSound from 'use-sound';
+
+import Layout from "./layout"
+import Footer from '../components/Footer';
+import Navbar from "../components/Navbar";
 import popSfx from '../public/popSound.mp3'
 
 

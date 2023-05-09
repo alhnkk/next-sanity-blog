@@ -1,18 +1,16 @@
+'use client'
+
 import groq from 'groq'
-import client from '@/client'
+import client from '../../../client'
 
-
-import MainImage from '@/components/MainImage'
-import BackButton from '@/components/BackButton'
-import DetailHeader from '@/components/DetailHeader'
-import PostContent from "@/components/PostContent"
-import Navbar from '@/components/Navbar'
-
+import MainImage from '../../components/MainImage'
+import DetailHeader from '../../components/DetailHeader.jsx'
+import PostContent from '../../components/PostContent.jsx'
 
 
 const Post = ({ post }) => {
   const {
-    title = 'Missing title',
+    title = "Missing name",
     name = 'Missing name',
     categories,
     authorImage,
@@ -20,8 +18,6 @@ const Post = ({ post }) => {
     mainImage
   } = post
   return (
-    <div>
-      {/* <BackButton /> */}
       <article>
 
         <DetailHeader
@@ -39,14 +35,13 @@ const Post = ({ post }) => {
           body={body}
         />
       </article>
-    </div>
   )
 }
 
 const query = groq`*[_type == "post" && slug.current == $slug][0]{
     title,
     "name": author->name,
-    "categories": categories[]->title,
+    "categories": categories[],
     "authorImage": author->image,
     body,
     mainImage
@@ -58,7 +53,7 @@ export async function getStaticPaths() {
 
   return {
     paths: paths.map((slug) => ({ params: { slug } })),
-    fallback: true,
+    fallback: false,
   }
 }
 
@@ -71,4 +66,5 @@ export async function getStaticProps(context) {
     }
   }
 }
+
 export default Post

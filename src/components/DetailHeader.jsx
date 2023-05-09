@@ -1,6 +1,7 @@
 import imageUrlBuilder from '@sanity/image-url'
-import client from "../client"
+import client from "../../client"
 import React from 'react'
+import Image from 'next/image'
 
 
 
@@ -14,12 +15,16 @@ const DetailHeader = ({ title, authorImage, name, categories }) => {
                 <h1 className='text-main-black hover:text-main-950 dark:text-main-100 dark:hover:text-main-300 text-3xl font-medium  md:text-7xl md:font-extrabold'>{title}</h1>
                 <div className='flex items-center mb-0.5 my-8 font-extrabold cursor-pointer'> {authorImage && (
                     <div>
-                        <img
+                        <Image
                             src={urlFor(authorImage)
-                                .width(50)
+                                .width(500)
                                 .url()}
                             alt={`${name}'s picture`}
+                            width={50}
+                            height={50}
                         />
+
+
                     </div>
                 )}
                     <span className='dark:text-main-300 font-semibold'>{name}</span>

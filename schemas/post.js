@@ -2,12 +2,12 @@ import {defineField, defineType} from 'sanity'
 
 export default defineType({
   name: 'post',
-  title: 'Gönderi',
+  title: 'post',
   type: 'document',
   fields: [
     defineField({
       name: 'title',
-      title: 'Başlık',
+      title: 'title',
       type: 'string',
     }),
     defineField({

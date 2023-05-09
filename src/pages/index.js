@@ -1,8 +1,11 @@
-import groq from 'groq'
-import client from '@/client';
+'use client'
 
-import PostCard from '@/components/PostCard'
-import PostHeader from '@/components/PostHeader'
+
+import groq from 'groq'
+import client from '../../client';
+
+import PostCard from '../components/PostCard'
+import PostHeader from '../components/PostHeader'
 
 
 const Index = ({ posts }) => {

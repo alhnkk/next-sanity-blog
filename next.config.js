@@ -1,7 +1,6 @@
 const nextConfig = {
-  reactStrictMode: true,
-  experimental: {
-    appDir: true,
+  images: {
+    domains: ['cdn.sanity.io'],
   },
   webpack: (config) => {
     config.module.rules.push({
