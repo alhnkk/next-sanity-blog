@@ -1,64 +1,123 @@
-import Link from 'next/link';
 import { useState } from 'react';
+import Link from 'next/link';
 
-export default function Navbar({ darkMode, handleDarkMode }) {
-  
+import { BiRss } from 'react-icons/bi'
+import { BsVolumeUp, BsVolumeMute } from 'react-icons/bs'
+
+import popSfx from '../public/popSound.mp3'
+import useSound from 'use-sound';
+import SearchBar from './SearchBar';
+
+
+export default function Navbar({ handleDarkMode }) {
+
+  // State for voice icon
+  const [voice, setVoice] = useState(true);
+  const [play] = useSound(popSfx)
+
+  // Toggles the voice state and plays a sound effect.
+  const changeVoice = () => {
+    setVoice(!voice)
+    play();
+  }
+
   // Small Screen Menu Dropdown
   const [showMenu, setShowMenu] = useState(false);
 
-  const handleMenu = () => {
-    setShowMenu(!showMenu);
-  };
+  // Handles the click event for the menu button, toggling the showMenu state.
+  const handleMenu = () => setShowMenu(!showMenu)
 
   return (
-    <div className={`flex flex-row justify-between items-baseline py-2.5 md:py-0`}>
+    // Logo
+    <div
+      className={`flex flex-row justify-between items-end py-2.5 md:py-0`}>
       <div>
-        <Link href="/">
+        <Link
+          href="/">
           <h1
-            className="md:mt-16 text-3xl md:text-8xl antialiased tracking-tight md:tracking-tighter 
-          leading-tight link-underline link-underline-black font-extrabold 
-           text-main-950 hover:text-main-900 dark:text-main-100 dark:hover:text-main-200">Alihan.</h1>
+            className="md:mt-16 md:mb-4 text-3xl md:text-6xl antialiased tracking-tight md:tracking-tighter 
+            leading-tight link-underline link-underline-black font-extrabold 
+           text-main-950 hover:text-main-900 dark:text-main-100 dark:hover:text-main-200">
+            hepaynıboşluk.
+          </h1>
         </Link>
       </div>
-      <div className='md:mr-0'>
+
+      {/* Menu Div*/}
+      <div
+        className='md:mr-0'>
+
+        {/* Hamburger Menu Icon */}
         <button
           id="closeMenu"
           className={`dark:text-main-50 dark:hover:text-main-100 md:hidden text-2xl font-bold mr-3 ${showMenu ? 'hidden' : ''}`}
-          onClick={handleMenu}
-        >
+          onClick={handleMenu}>
           &#9776;
         </button>
 
+        {/* Close Menu Icon */}
         <button
           id="openMenu"
           className={`dark:text-main-50  dark:hover:text-main-100  md:hidden text-2xl font-bold mr-3 ${showMenu ? '' : 'hidden'}`}
-          onClick={handleMenu}
-        >
+          onClick={handleMenu}>
           &#x2715;
         </button>
 
+        {/* Menu List */}
+        <ul
+          className={`text-main-800 hover:text-main-950 dark:text-main-50 bg-main-100 dark:bg-main-800 md:bg-main-50 
+        md:flex md:gap-6 font-semibold text-xl right-16 md:right-3  md:dark:bg-main-950 absolute md:relative p-4 my-3 
+        rounded-lg items-center ${showMenu ? '' : 'hidden'}`}>
 
-        <ul className={`text-main-800 hover:text-main-950 dark:text-main-50 md:flex md:gap-6 font-semibold text-xl right-10 md:right-0 bg-main-100 dark:bg-main-800 md:bg-main-50 md:dark:bg-main-950 absolute md:relative p-4 my-3 rounded-lg items-center ${showMenu ? '' : 'hidden'}`}>
+          {/* Dark Mode Toggle */}
           <li>
-            <Link href="/about" className='transition delay-75 dark:hover:text-main-300  '>
-              <span className='link-underline link-underline-black'>Hakkımda</span>
+            <div>
+              <input
+                onClick={handleDarkMode}
+                type="checkbox"
+                className="checkbox"
+                id="checkbox" />
+
+              <label
+                htmlFor="checkbox"
+                className="checkbox-label">
+                <i className="fas fa-moon" />
+                <i className="fas fa-sun" />
+                <span className="ball" />
+              </label>
+            </div>
+          </li>
+
+          {/* Contact Page Link */}
+          <li>
+            <Link
+              href="/contact"
+              className='transition delay-75 dark:hover:text-main-300'>
+
+              <BiRss
+                className='w-7 h-7 text-main-600 hover:text-main-900 dark:text-main-100 dark:hover:text-main-300' />
+
             </Link>
           </li>
 
-          <li>
-            <Link href="/" className='transition delay-75 dark:hover:text-main-300  '>
-              <span className='link-underline link-underline-black'>İletişim</span>
-            </Link>
+          {/* Volume Mute Icon */}
+          <li
+            className=' cursor-not-allowed'
+            onClick={() => changeVoice()}>
+            {
+              voice ?
+                <BsVolumeUp
+                  className='w-7 h-7 text-main-600 hover:text-main-900 dark:text-main-100 dark:hover:text-main-300' />
+                :
+                <BsVolumeMute
+                  className='w-7 h-7 text-main-600 hover:text-main-900 dark:text-main-100 dark:hover:text-main-300' />
+            }
           </li>
 
-          <li>
-            <input type="checkbox" id="toggle" className="toggle--checkbox cursor-pointer" onClick={handleDarkMode} />
-            <label htmlFor="toggle" className="toggle--label">
-              <span className="toggle--label-background"></span>
-            </label>
-            <div className="background"></div>
-          </li>
-
+          {/* Search Bar Component */}
+          {/* <li>
+            <SearchBar />
+          </li> */}
         </ul>
       </div>
     </div >

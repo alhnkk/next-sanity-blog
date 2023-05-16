@@ -1,25 +1,51 @@
 import Link from 'next/link';
 import MainImage from './MainImage';
+import { TbClockHour3 } from "react-icons/tb"
 
-const PostCard = ({ _id, title, slug, publishedAt, mainImage, excerpt, name, authorImage }) => {
+const PostCard = ({ _id, title, slug, publishedAt, mainImage, excerpt }) => {
   return (
-    <div key={_id} className="mb-16">
-      <Link href={`/post/${encodeURIComponent(slug.current)}`}>
-        {mainImage && (
-          <MainImage
-            mainImage={mainImage}
-          />
-        )}
+    <div
+      key={_id}
+      className="mb-16">
 
-        <div className="mt-3 md:mt-4">
-          <h2 className="text-main-950 dark:text-main-100 mb-1 text-2xl leading-snug lg:text-3xl link-underline link-underline-black">
+      {/* Link to the post page */}
+      <Link
+        href={`/post/${encodeURIComponent(slug.current)}`}>
+
+        {/* Render the main image if available */}
+        {
+          mainImage
+          &&
+          <MainImage
+            mainImage={mainImage} />
+        }
+
+        {/* Post title, date and excerpt */}
+        <div
+          className="mt-3 md:mt-4">
+
+          {/* Title */}
+          <h2
+            className="text-main-950 dark:text-main-100 mb-1 text-2xl leading-snug lg:text-3xl hover:underline">
             {title}
           </h2>
-          <span className="text-main-900 dark:text-main-400 mb-2 text-sm md:text-lg md:mb-0">
-            {new Date(publishedAt).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' })}
-          </span>
-          <div className="text-main-900 dark:text-main-200 mt-3 md:mt-2 text-sm md:leading-8 font-medium line-clamp-2 md:line-clamp-3">
-            <p>{excerpt}</p>
+
+          {/* Date */}
+          <div
+            className="flex items-center gap-x-1 text-main-900 dark:text-main-400 mb-2 text-sm md:text-lg md:mb-0">
+            <TbClockHour3
+              className='w-4 h-4' />
+            {new Date(publishedAt).toLocaleDateString('tr-TR', {
+              day: 'numeric', month: 'long', year: 'numeric'
+            })}
+          </div>
+
+          {/* Excerpt */}
+          <div
+            className="text-main-900 dark:text-main-200 mt-3 md:mt-2 text-sm md:leading-8 font-medium line-clamp-2 md:line-clamp-3">
+            <p>
+              {excerpt}
+            </p>
           </div>
         </div>
 
