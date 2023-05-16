@@ -86,7 +86,7 @@ const Newsletter = () => {
       </div>
 
       {/* Social Icons */}
-      <div 
+      {/* <div 
       class="mx-auto mt-3">
 
         <div 
@@ -118,7 +118,7 @@ const Newsletter = () => {
 
         
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
